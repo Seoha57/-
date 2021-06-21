@@ -1,19 +1,19 @@
 /**************************************
-½¬¿î °è´Ü ¼ö
-½Ã°£ Á¦ÇÑ   ¸Þ¸ð¸® Á¦ÇÑ
-   1 ÃÊ        256 MB
+ì‰¬ìš´ ê³„ë‹¨ ìˆ˜
+ì‹œê°„ ì œí•œ   ë©”ëª¨ë¦¬ ì œí•œ
+   1 ì´ˆ        256 MB
 
-¹®Á¦
-45656ÀÌ¶õ ¼ö¸¦ º¸ÀÚ.
-ÀÌ ¼ö´Â ÀÎÁ¢ÇÑ ¸ðµç ÀÚ¸®¼öÀÇ Â÷ÀÌ°¡ 1ÀÌ ³­´Ù. ÀÌ·± ¼ö¸¦ °è´Ü ¼ö¶ó°í ÇÑ´Ù.
-¼¼ÁØÀÌ´Â ¼öÀÇ ±æÀÌ°¡ NÀÎ °è´Ü ¼ö°¡ ¸î °³ ÀÖ´ÂÁö ±Ã±ÝÇØÁ³´Ù.
-NÀÌ ÁÖ¾îÁú ¶§, ±æÀÌ°¡ NÀÎ °è´Ü ¼ö°¡ ÃÑ ¸î °³ ÀÖ´ÂÁö ±¸ÇÏ´Â ÇÁ·Î±×·¥À» ÀÛ¼ºÇÏ½Ã¿À. (0À¸·Î ½ÃÀÛÇÏ´Â ¼ö´Â ¾ø´Ù.)
+ë¬¸ì œ
+45656ì´ëž€ ìˆ˜ë¥¼ ë³´ìž.
+ì´ ìˆ˜ëŠ” ì¸ì ‘í•œ ëª¨ë“  ìžë¦¬ìˆ˜ì˜ ì°¨ì´ê°€ 1ì´ ë‚œë‹¤. ì´ëŸ° ìˆ˜ë¥¼ ê³„ë‹¨ ìˆ˜ë¼ê³  í•œë‹¤.
+ì„¸ì¤€ì´ëŠ” ìˆ˜ì˜ ê¸¸ì´ê°€ Nì¸ ê³„ë‹¨ ìˆ˜ê°€ ëª‡ ê°œ ìžˆëŠ”ì§€ ê¶ê¸ˆí•´ì¡Œë‹¤.
+Nì´ ì£¼ì–´ì§ˆ ë•Œ, ê¸¸ì´ê°€ Nì¸ ê³„ë‹¨ ìˆ˜ê°€ ì´ ëª‡ ê°œ ìžˆëŠ”ì§€ êµ¬í•˜ëŠ” í”„ë¡œê·¸ëž¨ì„ ìž‘ì„±í•˜ì‹œì˜¤. (0ìœ¼ë¡œ ì‹œìž‘í•˜ëŠ” ìˆ˜ëŠ” ì—†ë‹¤.)
 
-ÀÔ·Â
-Ã¹Â° ÁÙ¿¡ NÀÌ ÁÖ¾îÁø´Ù. NÀº 1º¸´Ù Å©°Å³ª °°°í, 100º¸´Ù ÀÛ°Å³ª °°Àº ÀÚ¿¬¼öÀÌ´Ù.
+ìž…ë ¥
+ì²«ì§¸ ì¤„ì— Nì´ ì£¼ì–´ì§„ë‹¤. Nì€ 1ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ê³ , 100ë³´ë‹¤ ìž‘ê±°ë‚˜ ê°™ì€ ìžì—°ìˆ˜ì´ë‹¤.
 
-Ãâ·Â
-Ã¹Â° ÁÙ¿¡ Á¤´äÀ» 1,000,000,000À¸·Î ³ª´« ³ª¸ÓÁö¸¦ Ãâ·ÂÇÑ´Ù.
+ì¶œë ¥
+ì²«ì§¸ ì¤„ì— ì •ë‹µì„ 1,000,000,000ìœ¼ë¡œ ë‚˜ëˆˆ ë‚˜ë¨¸ì§€ë¥¼ ì¶œë ¥í•œë‹¤.
 **************************************/
 
 #include<bits/stdc++.h>
@@ -23,7 +23,7 @@ using namespace std;
 int share = 1000000000;
 
 /*DP(Bottom-Up)*/
-long long solution(int n) {
+long long solution_dottom_up(int n) {
 	vector<vector<long long>> dp(n + 1, vector<long long>(10, 0));
 
 	for (int i = 1; i < 10; ++i) {
@@ -62,11 +62,11 @@ long long dfs(int length, int n, int last, vector<vector<long long>>& table) {
 		return table[last][n - length + 1];
 
 	if (last + 1 <= 9)
-		count += dfs(length + 1, n, last + 1, table) % 1000000000;
+		count += dfs(length + 1, n, last + 1, table) % share;
 	if (last - 1 >= 0)
-		count += dfs(length + 1, n, last - 1, table) % 1000000000;
+		count += dfs(length + 1, n, last - 1, table) % share;
 
-	table[last][n - length + 1] = count % 1000000000;
+	table[last][n - length + 1] = count % share;
 
 	return count;
 }
@@ -78,12 +78,12 @@ int solution_top_down(int n) {
 
 	for (int j = 1; j <= 9; ++j) {
 		if (table[j][n] != -1)
-			answer += table[j][n] % 1000000000;
+			answer += table[j][n] % share;
 		else
-			answer += dfs(1, n, j, table) % 1000000000;
+			answer += dfs(1, n, j, table) % share;
 	}
 
-	return answer % 1000000000;
+	return answer % share;
 }
 
 int main(void) {
@@ -94,7 +94,7 @@ int main(void) {
 	int n;
 	cin >> n;
 
-	cout << solution(n) << '\n';
+	cout << solution_dottom_up(n) << '\n';
 
 	return 0;
 }
