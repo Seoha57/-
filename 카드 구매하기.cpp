@@ -49,7 +49,7 @@ int solution(int n, vector<int> costs) {
 		//기본 값 initialize
 		dp[i] = costs[i - 1];
 
-		//ex) 6 -> (5+1) / (4+2) / (3+3)
+		//ex) 6 -> max(6, (5+1), (4+2), (3+3))
 		for (int j = i - 1; j >= (i / 2); --j) {
 			dp[i] = max(dp[i], dp[j] + dp[i - j]);
 		}
