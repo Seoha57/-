@@ -43,7 +43,7 @@ N개보다 많은 개수의 카드를 산 다음, 나머지 카드를 버려서 
 
 using namespace std;
 
-int solution(int n, vector<int> costs) {
+int solution(int n, const vector<int>& costs) {
 	vector<int> dp(n + 1, 0);
 	for (int i = 1; i <= n; ++i) {
 		//기본 값 initialize
